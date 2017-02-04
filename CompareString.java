@@ -42,47 +42,51 @@ public class CompareString extends JFrame{
 		string1 = new JLabel("First string:		");				// creating labels
 		string1Panel.add(string1);							// add string1 label to panel
 		
-		firstString = new JTextField(10);					// create a text field with 10 visible columns
+		firstString = new JTextField(10);				// create a text field with 10 visible columns
 		string1Panel.add(firstString);
 		
-		labelPanel.add(string1Panel, BorderLayout.NORTH);
+		labelPanel.add(string1Panel, BorderLayout.NORTH);	// adds string1Panel to the northern part of the label panel
 		
-		string2 = new JLabel("Second string:	");
-		string2Panel.add(string2);
+		string2 = new JLabel("Second string:	");		// create second label
+		string2Panel.add(string2);				// add label to panel
 		
-		secondString = new JTextField(10);
-		string2Panel.add(secondString);
+		secondString = new JTextField(10);			// creates a text field for the label
+		string2Panel.add(secondString);				// adds text field to panel
 		
-		labelPanel.add(string2Panel, BorderLayout.SOUTH);
+		labelPanel.add(string2Panel, BorderLayout.SOUTH);	// adds string2Panel to the southern part of the label panel
 		
-		compareButton = new JButton("Compare");				// creates a button
-		buttonPanel.add(compareButton);
+		compareButton = new JButton("Compare");				// creates a button with the text "Compare"
+		buttonPanel.add(compareButton);				// adds button to a panel
 		
-		resultTextField = new JTextField("Comparism not yet made");
+		resultTextField = new JTextField("Comparism not yet made");	// create a textfield to show result of operation
 		resultTextField.setHorizontalAlignment(JTextField.CENTER);
-		resultTextField.setEditable(false);
+		resultTextField.setEditable(false);				// makes textfield uneditable by user
 		
-		resultPanel.add(resultTextField);
+		resultPanel.add(resultTextField);			// adds textfield to panel
 				
-		
+		// add the created panels to JFrame
 		add(labelPanel, BorderLayout.NORTH);
 		add(buttonPanel, BorderLayout.CENTER);
 		add(resultPanel, BorderLayout.SOUTH);
 		
+		// registers listeners for button
 		Compare handler = new Compare();
 		compareButton.addActionListener(handler);
 		compareButton.addKeyListener(handler);
 				
-	}
+	}	//end of CompareString constructor
 	
+	// An inner private class for event handling
 	private class Compare implements ActionListener, KeyListener {
 		
+		// responds to button event, i.e when button is clicked
 		public void actionPerformed( ActionEvent e) {
 			
 			compareString();
 			
 		}
 		
+		// responds to key event, i.e when the enter key is pressed this method responds
 		public void keyPressed( KeyEvent e) {
 			
 			if(e.getKeyCode() == KeyEvent.VK_ENTER){
@@ -99,11 +103,20 @@ public class CompareString extends JFrame{
 			
 		}
 		
+		/*
+		 * This method gets strings from the textField and uses the method 
+		 * compareTo() to compare if two strings gotten from the text field are 
+		 * equal,  or otherwise.
+		 * OUTPUT
+		 * It prints out to a textfield whether the strings compared are equal or not.
+		 * If no strings are gotten from the textFields, it prints out the statement 
+		 * "No strings entered".
+		 */
 		private void compareString(){
 			
-			int result = firstString.getText().compareTo(secondString.getText());
+			int result = firstString.getText().compareTo(secondString.getText());	// compares two strings
 			
-			if (firstString.getText().equals("") && secondString.getText().equals(""))
+			if (firstString.getText().equals("") && secondString.getText().equals(""))	// check if string is gotten from the textField or not
 				result = 2;
 			
 			if (result == 0)
